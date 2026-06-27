@@ -39,6 +39,7 @@
                         <label for="email" class="block text-xs font-medium text-gray-600 mb-1">Email</label>
                         <input type="email" name="email" id="email" value="{{ old('email') }}" required autofocus
                             class="w-full px-3 py-2 border border-gray-300 text-sm focus:outline-none focus:border-blue-500"
+                            placeholder="nama@email.com">
                     </div>
                     <div class="mb-3">
                         <label for="password" class="block text-xs font-medium text-gray-600 mb-1">Password</label>
@@ -54,6 +55,14 @@
                         Masuk
                     </button>
                 </form>
+            </div>
+
+            <div class="mt-3 bg-white border border-gray-300 p-3 text-xs text-gray-500">
+                <p class="font-medium text-gray-600 mb-1">Akun demo:</p>
+                <p>Admin : admin@siakad.ac.id / admin123</p>
+                <p>Mahasiswa : email mahasiswa, password = NPM</p>
+            </div>
+
         </div>
     </div>
 

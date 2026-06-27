@@ -62,11 +62,15 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     Route::get('matakuliah/{matakuliah}', [MatakuliahController::class, 'show'])->name('matakuliah.show');
 
     // CRUD Jadwal
-    Route::resource('jadwal', JadwalController::class)->except(['show']);
+    Route::resource('jadwal', JadwalController::class);
 
-    // Lihat & Export semua data KRS
-    Route::get('krs', [AdminKrsController::class, 'index'])->name('krs.index');
+    // Export KRS harus didefinisikan SEBELUM Route::resource('krs', ...)
+    // agar path 'krs/export/pdf' tidak tertangkap oleh route 'krs/{krs}' (show).
     Route::get('krs/export/excel', [AdminKrsController::class, 'exportExcel'])->name('krs.export.excel');
+    Route::get('krs/export/pdf', [AdminKrsController::class, 'exportPdf'])->name('krs.export.pdf');
+
+    // CRUD KRS (Admin dapat menambah, mengedit, menghapus, dan melihat detail KRS)
+    Route::resource('krs', AdminKrsController::class)->parameters(['krs' => 'krs']);
 });
 
 // ============================================================

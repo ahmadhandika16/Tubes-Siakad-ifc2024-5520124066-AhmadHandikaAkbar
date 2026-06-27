@@ -8,6 +8,9 @@
         <p class="text-gray-500 text-xs mt-1">Kartu Rencana Studi seluruh mahasiswa.</p>
     </div>
     <div class="flex gap-2">
+        <a href="{{ route('admin.krs.create') }}" class="bg-blue-600 hover:bg-blue-700 text-white text-sm px-3 py-1.5">
+            + Tambah KRS
+        </a>
         <a href="{{ route('admin.krs.export.pdf', request()->only('search', 'npm')) }}" class="bg-red-600 hover:bg-red-700 text-white text-sm px-3 py-1.5">
             Export PDF
         </a>
@@ -45,6 +48,7 @@
                 <th class="text-left px-4 py-2 font-semibold text-gray-600">Mata Kuliah</th>
                 <th class="text-left px-4 py-2 font-semibold text-gray-600">SKS</th>
                 <th class="text-left px-4 py-2 font-semibold text-gray-600">Semester</th>
+                <th class="text-right px-4 py-2 font-semibold text-gray-600">Aksi</th>
             </tr>
         </thead>
         <tbody class="divide-y divide-gray-100">
@@ -55,9 +59,17 @@
                     <td class="px-4 py-2 text-gray-600">{{ $k->matakuliah->nama_matakuliah ?? '-' }}</td>
                     <td class="px-4 py-2 text-gray-600">{{ $k->matakuliah->sks ?? '-' }}</td>
                     <td class="px-4 py-2 text-gray-500">{{ $k->semester }}</td>
+                    <td class="px-4 py-2 text-right space-x-2 whitespace-nowrap">
+                        <a href="{{ route('admin.krs.show', ['krs' => $k->id]) }}" class="text-gray-500 hover:underline text-xs">Detail</a>
+                        <a href="{{ route('admin.krs.edit', ['krs' => $k->id]) }}" class="text-blue-600 hover:underline text-xs">Edit</a>
+                        <form action="{{ route('admin.krs.destroy', ['krs' => $k->id]) }}" method="POST" class="inline" onsubmit="return confirm('Yakin ingin menghapus KRS {{ $k->mahasiswa->nama ?? '' }} untuk mata kuliah {{ $k->matakuliah->nama_matakuliah ?? '' }}?')">
+                            @csrf @method('DELETE')
+                            <button type="submit" class="text-red-600 hover:underline text-xs">Hapus</button>
+                        </form>
+                    </td>
                 </tr>
             @empty
-                <tr><td colspan="5" class="px-4 py-6 text-center text-gray-400">Tidak ada data KRS ditemukan.</td></tr>
+                <tr><td colspan="6" class="px-4 py-6 text-center text-gray-400">Tidak ada data KRS ditemukan.</td></tr>
             @endforelse
         </tbody>
     </table>

@@ -43,6 +43,16 @@ class JadwalController extends Controller
     }
 
     /**
+     * Menampilkan detail 1 jadwal kuliah.
+     */
+    public function show(Jadwal $jadwal)
+    {
+        $jadwal->load(['matakuliah.krs.mahasiswa', 'dosen']);
+
+        return view('admin.jadwal.show', compact('jadwal'));
+    }
+
+    /**
      * Menampilkan form tambah jadwal.
      */
     public function create()

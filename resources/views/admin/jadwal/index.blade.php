@@ -52,6 +52,7 @@
                     <td class="px-4 py-2 text-gray-600">{{ $j->hari }}</td>
                     <td class="px-4 py-2 text-gray-600">{{ \Carbon\Carbon::parse($j->jam)->format('H:i') }}</td>
                     <td class="px-4 py-2 text-right space-x-2 whitespace-nowrap">
+                        <a href="{{ route('admin.jadwal.show', $j->id) }}" class="text-gray-500 hover:underline text-xs">Detail</a>
                         <a href="{{ route('admin.jadwal.edit', $j->id) }}" class="text-blue-600 hover:underline text-xs">Edit</a>
                         <form action="{{ route('admin.jadwal.destroy', $j->id) }}" method="POST" class="inline" onsubmit="return confirm('Yakin ingin menghapus jadwal ini?')">
                             @csrf @method('DELETE')
