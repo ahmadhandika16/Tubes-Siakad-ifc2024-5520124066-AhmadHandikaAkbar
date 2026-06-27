@@ -56,15 +56,6 @@
                         Masuk
                     </button>
                 </form>
-            </div>
-
-            <div class="mt-3 bg-white border border-gray-300 p-3 text-xs text-gray-500">
-                <p class="font-medium text-gray-600 mb-1">Akun demo:</p>
-                <p>Admin : admin@siakad.ac.id / admin123</p>
-                <p>Mahasiswa : email mahasiswa, password = NPM</p>
-            </div>
-
-        </div>
     </div>
 
 </body>
